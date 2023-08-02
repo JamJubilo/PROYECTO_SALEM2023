@@ -5,10 +5,10 @@ from django.utils.translation import gettext_lazy as _
 class Usuarios(models.Model):
     nombres = models.CharField(max_length=50,verbose_name="nombre")
     apellidos = models.CharField(max_length=100, verbose_name="Apellido usuario")
-    num_documento = models.IntegerField()
+    num_documento = models.IntegerField(verbose_name="Numero documento del usuario")
     correo = models.CharField(max_length=45, verbose_name="correo usuario")
     direccion = models.CharField(max_length=45, verbose_name="Direccion usuario")
-    num_telefono = models.IntegerField()
+    num_telefono = models.IntegerField(verbose_name="numero telefónico del usuario")
     password = models.CharField(max_length=45, verbose_name="Password usuario")
     class TipoDocumento(models.TextChoices):
         CC='C.C', _('Cédula de Ciudadanía')
