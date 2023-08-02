@@ -4,9 +4,9 @@ from django.utils.translation import gettext_lazy as _
 # Create your models here.
 class Estudiantes(models.Model):
     fecha_nacimiento = models.DateTimeField()
-    factor_rh = models.CharField(max_length=20)
+    factor_rh = models.CharField(max_length=20, verbose_name="Factor RH estudiante")
     num_telefono = models.IntegerField()
-    nom_acudiente = models.CharField(max_length=50,verbose_name="nombre")
+    nom_acudiente = models.CharField(max_length=50,verbose_name="nombre acudiente de estudiante")
     telefono_acudiente = models.IntegerField()
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo') 
