@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
+from usuarios.models import Usuarios
 # Create your models here.
 class Estudiantes(models.Model):
+    Usuario_id_usuario = models.ForeignKey(Usuarios,on_delete=models.PROTECT, verbose_name="usuario", related_name="usuario")
     fecha_nacimiento = models.DateTimeField(verbose_name="fecha nacimiento del estudiante",help_text="DD/MM/AAAA")
     factor_rh = models.CharField(max_length=20, verbose_name="Factor RH estudiante")
     num_telefono = models.CharField(max_length=45,verbose_name="Numero de telfono del estudiante")
@@ -13,7 +14,7 @@ class Estudiantes(models.Model):
         INACTIVO= '0', _('Inactivo') 
     estado = models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")    
     
-    def __str__(self) -> str:
+    def __str__(self):
         return "%s %s" %(self.nombre, self.apellido)
 
 
