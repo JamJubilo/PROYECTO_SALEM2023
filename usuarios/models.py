@@ -8,7 +8,7 @@ class Usuario(models.Model):
     direccion = models.CharField(max_length=45, verbose_name="Direccion usuario")
     num_telefono = models.CharField(max_length=45 ,verbose_name="numero telefónico del usuario")
     password = models.CharField(max_length=45, verbose_name="Password usuario")
-    class TipoDocumento(models.IntegerChoices):
+    class TipoDocumento(models.TextChoices):
         CC='C.C', _('Cédula de Ciudadanía')
         CE='C.E', _('Cédula de Extranjería')
         TI='T.I', _('Tarjeta de Identidad')
@@ -30,7 +30,7 @@ class Usuario(models.Model):
         return "%s %s" %(self.nombres, self.apellidos)  
 class Estudiante(models.Model):
     Usuario_id_usuario = models.ForeignKey(Usuario,on_delete=models.PROTECT, verbose_name="Usuario", related_name="Usuario")
-    fecha_nacimiento = models.DateTimeField(verbose_name="fecha nacimiento del estudiante",help_text="DD/MM/AAAA")
+    fecha_nacimiento = models.DateField(verbose_name="fecha nacimiento del estudiante",help_text="MM/DD/AAAA")
     factor_rh = models.CharField(max_length=20, verbose_name="Factor RH estudiante")
     num_telefono = models.CharField(max_length=45,verbose_name="Numero de telfono del estudiante")
     nom_acudiente = models.CharField(max_length=50,verbose_name="nombre acudiente de estudiante")
@@ -43,13 +43,12 @@ class Estudiante(models.Model):
     
 class Docente(models.Model):
     Usuario_id_usuario = models.ForeignKey(Usuario,on_delete=models.PROTECT, verbose_name="usuario", related_name="usuario")
-    asignatura_imparte = models.CharField(max_length=45, verbose_name="Asignatura que imparte docente")
-
+    
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo') 
         INACTIVO= '0', _('Inactivo') 
     estado = models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
     
 class Titulos(models.Model):
-    Docente_id_Docente = models.ForeignKey(Docente,on_delete=models.PROTECT,verbose_name="tiutlo del docente")  
-    nombre_titulo = models.CharField(max_length=45,verbose_name="Titulo del docente")
+    Docente_id_Docente = models.ForeignKey(Docente,on_delete=models.PROTECT,verbose_name="título del docente")  
+    nombre_titulo = models.CharField(max_length=45,verbose_name="Título del docente")

@@ -4,7 +4,7 @@ from usuarios.models import Estudiante
 
 # Create your models here.
 class Grado(models.Model):
-    num_grado = models.CharField(max_length=45,verbose_name="Grado")
+    num_grado = models.CharField(max_length=2,verbose_name="Grado")
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo') 
         INACTIVO= '0', _('Inactivo') 
@@ -12,7 +12,7 @@ class Grado(models.Model):
     
 class Curso(models.Model):
     Grado_id_grado = models.ForeignKey(Grado,on_delete=models.PROTECT, verbose_name="Grado", related_name="Grado")
-    nombre_curso = models.CharField(max_length=100,verbose_name="Curso")
+    nombre_curso = models.CharField(max_length=20,verbose_name="Curso")
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo') 
         INACTIVO= '0', _('Inactivo') 
