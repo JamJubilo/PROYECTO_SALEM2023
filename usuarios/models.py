@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 class Usuario(models.Model):
@@ -13,7 +13,7 @@ class Usuario(models.Model):
         CE='C.E', _('Cédula de Extranjería')
         TI='T.I', _('Tarjeta de Identidad')
         PP='Pasaporte', _('pasaporte')
-    tipoDocumento=models.CharField(max_length=4, choices=TipoDocumento.choices, default=TipoDocumento.CC, verbose_name="Tipo de Documento")
+    tipoDocumento=models.CharField(max_length=45, choices=TipoDocumento.choices, default=TipoDocumento.CC, verbose_name="Tipo de Documento")
     num_documento = models.CharField(max_length=45,verbose_name="Numero documento del usuario")
     correo = models.CharField(max_length=45, verbose_name="correo usuario")
 
@@ -51,4 +51,4 @@ class Docente(models.Model):
     
 class Titulos(models.Model):
     Docente_id_Docente = models.ForeignKey(Docente,on_delete=models.PROTECT,verbose_name="título del docente")  
-    nombre_titulo = models.CharField(max_length=45,verbose_name="Título del docente")
+    nombre_titulo = models.CharField(max_length=45,verbose_name="Título del docente") 
