@@ -1,8 +1,7 @@
 from django.db import models
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from usuarios.models import Estudiante
 
-# Create your models here.
 class Grado(models.Model):
     num_grado = models.CharField(max_length=2,verbose_name="Grado")
     class Estado(models.TextChoices):
@@ -20,7 +19,7 @@ class Curso(models.Model):
 
 class Matricula(models.Model):
     Estudiante_id_estudiante = models.ForeignKey(Estudiante,on_delete=models.PROTECT, verbose_name="Grado", related_name="Grado")
-    curso_id_curso = models.ForeignKey(Estudiante,on_delete=models.PROTECT, verbose_name="Grado", related_name="Grado")
+    curso_id_curso = models.ForeignKey(Curso,on_delete=models.PROTECT, verbose_name="Grado", related_name="Grado")
     fecha = models.DateField(verbose_name="fecha de Matricula",help_text="DD/MM/AAAA")
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo') 
