@@ -15,9 +15,11 @@
          Mi sitio web Django</title>
 </head>
 <body>
+    
     {% include 'partials/header.html' %}
-
-    {% include 'partials/main.html' %}
+    
+    {% block contenido %}    
+    {% endblock contenido %}    
     
     {% include 'partials/footer.html' %}
         
