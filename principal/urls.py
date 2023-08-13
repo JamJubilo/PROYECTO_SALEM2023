@@ -1,12 +1,12 @@
 from django.contrib import admin
 from django.urls import path, include
-from principal.views import hola_mundo
+from principal.views import inicio, login
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', hola_mundo, name="inicio"),
+    path('', inicio, name="inicio"),
     path('asignaturas/',include('asignaturas.urls')),
     path('grados/',include('grados.urls')),
     path('usuarios/',include('usuarios.urls')),
-    
+    path('login/', login, name="login"),
 ]
