@@ -10,7 +10,7 @@ class Grado(models.Model):
     estado = models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado") 
     
 class Curso(models.Model):
-    Grado_id_grado = models.ForeignKey(Grado,on_delete=models.PROTECT, verbose_name="Grado", related_name="Grado")
+    Grado_id_grado = models.ForeignKey(Grado,on_delete=models.CASCADE, null=True, blank=False, verbose_name="Grado", related_name="Grado")
     nombre_curso = models.CharField(max_length=20,verbose_name="Curso")
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo') 
@@ -18,8 +18,8 @@ class Curso(models.Model):
     estado = models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
 
 class Matricula(models.Model):
-    Estudiante_id_estudiante = models.ForeignKey(Estudiante,on_delete=models.PROTECT, verbose_name="Grado", related_name="Grado")
-    curso_id_curso = models.ForeignKey(Curso,on_delete=models.PROTECT, verbose_name="Grado", related_name="Grado")
+    Estudiante_id_estudiante = models.ForeignKey(Estudiante,on_delete=models.CASCADE, null=True, blank=False, verbose_name="Grado", related_name="Grado")
+    curso_id_curso = models.ForeignKey(Curso,on_delete=models.CASCADE, null=True, blank=False, verbose_name="Grado", related_name="Grado")
     fecha = models.DateField(verbose_name="fecha de Matricula",help_text="DD/MM/AAAA")
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo') 

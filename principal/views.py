@@ -1,21 +1,22 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from django.contrib.auth import logout
 
 
 def inicio(request):
-    nombre = "Jamer"
-    apellido= "Martinez Guerra"
-    tel= "30004567895"
-    context={
-        "nombres": nombre,
-        
-        "apellidos": apellido,
-        
-        "telefono":tel
+    titulo = "Inicio"
+    context = {
+        "titulo": titulo
     }
     return render(request, "index.html", context)
 
-def login(request):
-    context={
-        
+def index_admin(request):
+    titulo = "Principal"
+    context = {
+        "titulo": titulo
     }
-    return render(request, "login.html", context)
+    return render(request, "index-admin.html", context)
+
+def logout_user(request):
+    logout(request)
+    return redirect('inicio')

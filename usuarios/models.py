@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Usuario(models.Model):
@@ -25,11 +26,13 @@ class Usuario(models.Model):
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo') 
         INACTIVO= '0', _('Inactivo') 
-    estado = models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado") 
+    estado = models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
     def __str__(self):
         return "%s %s" %(self.nombres, self.apellidos)  
 class Estudiante(models.Model):
-    Usuario_id_usuario = models.ForeignKey(Usuario,on_delete=models.PROTECT, verbose_name="Usuario", related_name="Usuario")
+    Usuario_id_usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE, null=True, blank=False, verbose_name="Usuario", related_name="Usuario")
     fecha_nacimiento = models.DateField(verbose_name="fecha nacimiento del estudiante",help_text="MM/DD/AAAA")
     factor_rh = models.CharField(max_length=20, verbose_name="Factor RH estudiante")
     num_telefono = models.CharField(max_length=45,verbose_name="Numero de telfono del estudiante")
@@ -42,7 +45,7 @@ class Estudiante(models.Model):
     estado = models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")  
     
 class Docente(models.Model):
-    Usuario_id_usuario = models.ForeignKey(Usuario,on_delete=models.PROTECT, verbose_name="usuario", related_name="usuario")
+    Usuario_id_usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE, null=True, blank=False, verbose_name="usuario", related_name="usuario")
     
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo') 
@@ -50,5 +53,5 @@ class Docente(models.Model):
     estado = models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
     
 class Titulos(models.Model):
-    Docente_id_Docente = models.ForeignKey(Docente,on_delete=models.PROTECT,verbose_name="título del docente")  
+    Docente_id_Docente = models.ForeignKey(Docente,on_delete=models.CASCADE, null=True, blank=False,verbose_name="título del docente")  
     nombre_titulo = models.CharField(max_length=45,verbose_name="Título del docente") 
