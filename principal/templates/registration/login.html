@@ -1,14 +1,9 @@
-{% extends 'partials/body.html' %}
-{% load static %}
-
-
-{% block contenido %}
+{% extends 'partials/body.html' %} {% load static %} {% block contenido %}
 <section class="mt-5">
-
     <div class="container container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-6">
-                <img src="{% static 'img/inicio de sesion.jpeg' %} " class="img-fluid" alt="inicio de sesion">
+                <img src="{% static 'img/inicio de sesion.jpeg' %} " class="img-fluid" alt="inicio de sesion" />
             </div>
             <div class="col-6">
                 <div class="p-5">
@@ -17,23 +12,31 @@
                     </div>
                     <form class="user" method="post">
                         {% csrf_token %}
-                        <div class="mb-3">
-                            {{form.username}}
-                        </div>
-                        <div class="mb-3">
-                            {{form.password}}
-                        </div>
+                        <div class="mb-3">{{form.username}}</div>
+                        <div class="mb-3">{{form.password}}</div>
+<!--                         {% comment %}
                         <div class="mb-3">
                             <div class="custom-control custom-checkbox small">
-                                <div class="form-check"><input id="formCheck-1"
-                                        class="form-check-input custom-control-input" type="checkbox" /><label
-                                        class="form-check-label custom-control-label" for="formCheck-1">Recuérdame
-                                        </label></div>
+                                <div class="form-check">
+                                    <input id="formCheck-1" class="form-check-input custom-control-input"
+                                        type="checkbox" /><label class="form-check-label custom-control-label"
+                                        for="formCheck-1">Recuérdame
+                                    </label>
+                                </div>
                             </div>
-                        </div><input type="submit" class="btn btn-primary d-block btn-user w-100" value="Iniciar Sesión">
+                        </div>
+                        {% endcomment %} -->
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary d-block btn-user w-100"
+                                value="Iniciar Sesión">
+                        </div>
                     </form>
-                    <div class="text-center"><a class="small" href="forgot-password.html">Forgot Password?</a></div>
-                    <div class="text-center"><a class="small" href="register.html">Create an Account!</a></div>
+                    <div class="text-center">
+                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                    </div>
+                    <div class="text-center">
+                        <a class="small" href="register.html">Create an Account!</a>
+                    </div>
                 </div>
             </div>
         </div>
